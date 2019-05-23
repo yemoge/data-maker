@@ -1,0 +1,13 @@
+{
+  "dimTables": [
+    {
+      "name": "tb1",
+      "hasHeader": true,
+      "rowNum": 1000,
+      "cols": [
+      ]
+    }
+  ],
+  "factTables": {
+  }
+}
