@@ -5,3 +5,4 @@ plugins/
 target/
 lib/
 nohup.out
+.DS_Store
