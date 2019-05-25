@@ -1,5 +1,5 @@
 {
-  "dimTables": [
+  "tables": [
     {
       "name": "tb1",
       "hasHeader": true,
@@ -8,6 +8,5 @@
       ]
     }
   ],
-  "factTables": {
-  }
+  "outputDir": "/hyf/mycube"
 }

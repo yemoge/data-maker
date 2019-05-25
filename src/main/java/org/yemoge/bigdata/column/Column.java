@@ -7,4 +7,6 @@ public interface Column {
 
     String title();
 
+    void makeDict();
+
 }
