@@ -1,10 +1,28 @@
 {
   "tables": [
     {
-      "name": "tb1",
-      "hasHeader": true,
+      "name": "my_food",
       "rowNum": 1000,
       "cols": [
+        {
+          "name": "col1",
+          "type": "string",
+          "cardinal": 3,
+          "length": 5
+        },
+        {
+          "name": "col2",
+          "type": "int",
+          "cardinal": 5,
+          "length": 3
+        },
+        {
+          "name": "col3",
+          "type": "decimal(5,3)",
+          "m": 5,
+          "n": 3,
+          "cardinal": 2
+        }
       ]
     }
   ],

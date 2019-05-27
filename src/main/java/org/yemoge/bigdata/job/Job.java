@@ -9,6 +9,7 @@ import org.yemoge.bigdata.table.Table;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -53,22 +54,31 @@ public class Job {
     private Table buildTable(Map<String,Object> tableConfig) {
         List<Column> columns = buildCols((List<Map<String, Object>>) tableConfig.get(KEY_TABLE_COLS));
         String tableName = (String) tableConfig.get(KEY_TABLE_NAME);
-        String tableDir = outputDir + File.pathSeparator + tableName;
-        Integer nRows = (Integer) tableConfig.get(KEY_TABLE_ROW_NUM);
-        if(nRows == null) {
-            nRows = DEFAULT_TABLE_ROW_NUM;
+        String tableDir = outputDir + File.separator + tableName;
+        int nRows = DEFAULT_TABLE_ROW_NUM;
+        if(tableConfig.containsKey(KEY_TABLE_ROW_NUM)) {
+            nRows = ((Double) tableConfig.get(KEY_TABLE_ROW_NUM)).intValue();
         }
         return new Table(tableName, nRows, columns, tableDir);
     }
 
     private List<Column> buildCols(List<Map<String,Object>> colsConfig) {
         List<Column> columns = new ArrayList<>();
-        colsConfig.forEach(ColumnFactory::makeColumn);
+        for (Map<String,Object> colConfig :colsConfig) {
+            columns.add(ColumnFactory.makeColumn(colConfig));
+        }
         return columns;
     }
 
 
     public void execute() throws IOException {
+
+        File outputRoot =  new File(outputDir);
+
+        if(!outputRoot.exists()) {
+            outputRoot.mkdir();
+        }
+
         for(Table table : tables) {
             table.makeTable();
         }

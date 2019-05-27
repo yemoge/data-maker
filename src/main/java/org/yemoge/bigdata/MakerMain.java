@@ -24,10 +24,10 @@ public class MakerMain {
 
     public static void main(String[] args) throws IOException {
         if(args.length != 1) {
-            System.out.println("job configuration file must be specified!");
+            new IllegalArgumentException("job configuration file must be specified!");
         }
-
-        buildJob((args[1])).execute();
+        Job job = buildJob(args[0]);
+        job.execute();
     }
 
 }

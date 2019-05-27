@@ -10,18 +10,17 @@ import java.util.Set;
  */
 public class DecimalColumn extends BaseColumn {
 
-    private int m;
+    private int m = 6;
 
-    private int n;
+    private int n = 2;
 
-    public DecimalColumn(int m, int n) {
-        this.length = m + n + 1;
+    public DecimalColumn(String title, int cardinal, int m, int n) {
+        super(title, cardinal, m + n + 1);
+        this.m = m;
+        this.n = n;
+        makeDict();
     }
 
-    public DecimalColumn(int m, int n, int cardinality) {
-        this.length = m + n + 1;
-        this.cardinal = cardinality;
-    }
 
     @Override
     public void makeDict() {
@@ -34,5 +33,7 @@ public class DecimalColumn extends BaseColumn {
         values = new String[cardinal];
         set.toArray(values);
     }
+
+
 
 }

@@ -27,14 +27,12 @@ public abstract class BaseColumn implements Column {
         return values[RandomUtils.nextInt(0, cardinal)];
     }
 
-    @Override
-    public void makeDict() {
-        Set<String> set = new HashSet<>();
-        for(int i = 0; i < cardinal || set.size() < cardinal; ++i) {
-            set.add(RandomStringUtils.randomAlphanumeric(length));
-        }
-        values = new String[cardinal];
-        set.toArray(values);
+
+
+    public BaseColumn(String title, int cardinal, int length) {
+        this.title = title;
+        this.cardinal = cardinal;
+        this.length = length;
     }
 
     public int getCardinal() {

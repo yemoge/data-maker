@@ -30,16 +30,22 @@ public class Table {
         this.nRows = nRows;
         this.columnList = columnList;
         this.outputDir = outputDir;
+
+        File outputRoot = new File(outputDir);
+        if(!outputRoot.exists()) {
+            outputRoot.mkdir();
+        }
     }
 
     public void makeTable() throws IOException {
-        String dataPath = outputDir + File.pathSeparator +  "data" + File.pathSeparator + name + File.pathSeparator + "0.csv";
+
+        String dataPath = outputDir + File.separator + "0.csv";
         try(OutputStreamWriter writer = new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(new File(dataPath))))) {
             for(int i = 0; i < nRows; ++i) {
                 StringBuilder sb = new StringBuilder(String.valueOf(nextPk.incrementAndGet()));
                 for(int j = 0; j < columnList.size(); ++j) {
                     sb.append(",");
-                    sb.append(columnList.get(i).makeCell());
+                    sb.append(columnList.get(j).makeCell());
                 }
                 sb.append("\n");
                 writer.write(sb.toString());
