@@ -41,6 +41,8 @@ public class Table {
 
         String dataPath = outputDir + File.separator + "0.csv";
         try(OutputStreamWriter writer = new OutputStreamWriter(new BufferedOutputStream(new FileOutputStream(new File(dataPath))))) {
+            writer.write(header());
+            writer.write("\n");
             for(int i = 0; i < nRows; ++i) {
                 StringBuilder sb = new StringBuilder(String.valueOf(nextPk.incrementAndGet()));
                 for(int j = 0; j < columnList.size(); ++j) {
@@ -52,7 +54,15 @@ public class Table {
             }
         }
 
+    }
 
+    private String header() {
+        StringBuilder sb = new StringBuilder("id");
+        for(int j = 0; j < columnList.size(); ++j) {
+            sb.append(",");
+            sb.append(columnList.get(j).title());
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) {

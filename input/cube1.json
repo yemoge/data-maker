@@ -2,12 +2,12 @@
   "tables": [
     {
       "name": "my_food",
-      "rowNum": 1000,
+      "rowNum": 1000000,
       "cols": [
         {
-          "name": "col1",
+          "name": "title",
           "type": "string",
-          "cardinal": 3,
+          "cardinal": 138508,
           "length": 5
         },
         {
