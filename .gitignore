@@ -6,3 +6,4 @@ target/
 lib/
 nohup.out
 .DS_Store
+dist/

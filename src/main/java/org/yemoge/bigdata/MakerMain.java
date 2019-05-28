@@ -3,13 +3,13 @@ package org.yemoge.bigdata;
 
 import com.google.gson.Gson;
 import org.yemoge.bigdata.job.Job;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Map;
+
 
 public class MakerMain {
 
@@ -24,7 +24,7 @@ public class MakerMain {
 
     public static void main(String[] args) throws IOException {
         if(args.length != 1) {
-            new IllegalArgumentException("job configuration file must be specified!");
+            throw new IllegalArgumentException("job configuration file must be specified!");
         }
         Job job = buildJob(args[0]);
         job.execute();

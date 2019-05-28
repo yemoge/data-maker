@@ -54,6 +54,45 @@
                     <showDeprecation>true</showDeprecation>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <copy todir="${basedir}/dist/lib">
+                                    <fileset dir="target/">
+                                        <include name="${project.name}-${project.version}.jar" />
+                                    </fileset>
+                                </copy>
+                                <copy todir="${basedir}/dist/bin">
+                                    <fileset dir="bin/">
+                                        <include name="data-maker.sh" />
+                                    </fileset>
+                                </copy>
+                                <copy todir="${basedir}/dist/jobs">
+                                    <fileset dir="bin/">
+                                        <include name="*.sh" />
+                                    </fileset>
+                                </copy>
+                                <chmod perm="a+x">
+                                    <fileset dir="${basedir}/dist/bin">
+                                    </fileset>
+                                </chmod>
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
