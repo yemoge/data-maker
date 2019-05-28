@@ -17,6 +17,8 @@ public abstract class BaseColumn implements Column {
 
     protected String[] values;
 
+    private int cursor = 0;
+
     @Override
     public String title() {
         return title;
@@ -24,7 +26,13 @@ public abstract class BaseColumn implements Column {
 
     @Override
     public String makeCell() {
-        return values[RandomUtils.nextInt(0, cardinal)];
+        //return values[RandomUtils.nextInt(0, cardinal)];
+        String ret = values[cursor];
+        cursor++;
+        if(cursor == cardinal) {
+            cursor = 0;
+        }
+        return ret;
     }
 
 

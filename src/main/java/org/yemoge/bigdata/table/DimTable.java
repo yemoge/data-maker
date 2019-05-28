@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class Table {
+public class DimTable {
 
     private List<Column> columnList = new ArrayList<>();
 
@@ -25,7 +25,21 @@ public class Table {
 
     AtomicInteger nextPk = new AtomicInteger(0);
 
-    public Table(String name, int nRows, List<Column> columnList, String outputDir) {
+
+    public Column findColumn(String title) {
+        for(Column column : columnList) {
+            if(column.title().equals(title)) {
+                return column;
+            }
+        }
+        return null;
+    }
+
+    public int size() {
+        return nRows;
+    }
+
+    public DimTable(String name, int nRows, List<Column> columnList, String outputDir) {
         this.name = name;
         this.nRows = nRows;
         this.columnList = columnList;
@@ -65,8 +79,7 @@ public class Table {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-
+    public String getName() {
+        return name;
     }
-
 }

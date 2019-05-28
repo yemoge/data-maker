@@ -1,8 +1,32 @@
 {
-  "tables": [
+  "factTables": [
+    {
+      "name": "my_shop_food_rel",
+      "rowNum": 200000,
+      "refs": [
+        {
+          "name": "source",
+          "table": "my_shop"
+        },
+        {
+          "name": "target",
+          "table": "my_food"
+        }
+      ],
+      "cols": [
+        {
+          "name": "m1",
+          "type": "int",
+          "cardinal": 5,
+          "length": 3
+        }
+      ]
+    }
+  ],
+  "dimTables": [
     {
       "name": "my_food",
-      "rowNum": 1000000,
+      "rowNum": 138508,
       "cols": [
         {
           "name": "title",
@@ -22,6 +46,18 @@
           "m": 5,
           "n": 3,
           "cardinal": 2
+        }
+      ]
+    },
+    {
+      "name": "my_shop",
+      "rowNum": 22250,
+      "cols": [
+        {
+          "name": "title",
+          "type": "string",
+          "cardinal": 22250,
+          "length": 5
         }
       ]
     }
